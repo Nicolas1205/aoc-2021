@@ -5,6 +5,7 @@ import Text.Printf
 sum'' :: [String] -> Int
 sum'' xs = helper xs 0 0 0
   where
+    helper [] dy dx d = d * dx
     helper (x : xs) dy dx d
       | head' == 'e' = d * dx
       | head' == 'f' = helper xs dy (dx + last') (d + last' * dy)
@@ -21,5 +22,5 @@ main = do
     (filePath : _) -> do
       printf "Input file: %s\n" filePath
       xs <- lines <$> readFile filePath
-      print $ sum'' (xs ++ ["e"])
+      print $ sum'' xs
     _ -> error "Input file is not provided"
